@@ -1,0 +1,273 @@
+#wrap {
+  width: 100%;
+  height: 1747px;
+  background-color: #ddd;
+  background-image: url("../img/bgWhiteBlack.png");
+  background-size: cover;
+  padding-top: 173px;
+}
+
+#contents {
+  width: 100%;
+  height: 1424px;
+  background-color: transparent;
+  background-image: url("../img/bgWhiteT.png");
+  background-size: cover;
+  border-radius: 70px;
+}
+
+#top {
+  width: 100%;
+  height: 317px;
+}
+
+#top button {
+  margin-top: 65px;
+  margin-left: 105px;
+  margin-bottom: 155px;
+  width: 250px;
+  height: 97px;
+  font-size: 43px;
+}
+
+#middle {
+  width: 100%;
+  height: 1107px;
+  display: flex;
+}
+
+#middle .left1 {
+  width: 428px;
+  height: 100%;
+  background-image: url("../img/wine1.png");
+  background-size: 270px 1000px;
+  background-repeat: no-repeat;
+  background-position: 70px 0px;
+}
+
+#middle .left2 {
+  width: 428px;
+  height: 100%;
+  background-image: url("../img/wine2.png");
+  background-size: 270px 1000px;
+  background-repeat: no-repeat;
+  background-position: 70px 0px;
+}
+
+#middle .left3 {
+  width: 428px;
+  height: 100%;
+  background-image: url("../img/wine3.png");
+  background-size: 270px 1000px;
+  background-repeat: no-repeat;
+  background-position: 70px 0px;
+}
+
+#middle .left4 {
+  width: 428px;
+  height: 100%;
+  background-image: url("../img/wine4.png");
+  background-size: 270px 1000px;
+  background-repeat: no-repeat;
+  background-position: 70px 0px;
+}
+
+#middle .left5 {
+  width: 428px;
+  height: 100%;
+  background-image: url("../img/wine5.png");
+  background-size: 270px 1000px;
+  background-repeat: no-repeat;
+  background-position: 70px 0px;
+}
+
+#middle .left6 {
+  width: 428px;
+  height: 100%;
+  background-image: url("../img/wine6.png");
+  background-size: 270px 1000px;
+  background-repeat: no-repeat;
+  background-position: 70px 0px;
+}
+
+#middle .left7 {
+  width: 428px;
+  height: 100%;
+  background-image: url("../img/wine7.png");
+  background-size: 270px 1000px;
+  background-repeat: no-repeat;
+  background-position: 70px 0px;
+}
+
+#middle .left8 {
+  width: 428px;
+  height: 100%;
+  background-image: url("../img/wine8.png");
+  background-size: 270px 1000px;
+  background-repeat: no-repeat;
+  background-position: 70px 0px;
+}
+
+#middle #right {
+  width: 568px;
+  height: 100%;
+}
+
+#middle #right h1 {
+  font-size: 40px;
+  font-weight: bolder;
+  font-family: "NanumBarunGothicBold";
+  color: #363636;
+  max-height: 90px;
+  text-align: left;
+}
+
+#middle #right h3 {
+  word-break: break-all;
+  font-size: 35px;
+  font-weight: bold;
+  font-family: "NanumBarunGothic";
+  color: #363636;
+  max-height: 35px;
+}
+
+#middle #right p {
+  word-break: break-all;
+  line-height: 40px;
+  margin-top: 12px;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: "NanumBarunGothic";
+  color: #616161;
+  max-height: 80px;
+}
+
+#middle #right p.text {
+  height: 400px;
+  max-height: 450px;
+  overflow: auto;
+}
+
+#middle #right .level {
+  font-size: 30px;
+  font-family: "NanumBarunGothicBold";
+  color: #2e2e2e;
+  margin-bottom: 10px;
+}
+
+#middle #right .level span {
+  display: inline-block;
+  height: 70px;
+  line-height: 63px;
+  vertical-align: middle;
+}
+
+.level span:first-child {
+  width: 110px;
+}
+
+.level span:last-child {
+  width: 70px;
+  text-align: right;
+}
+
+#middle #right .level .blackCircle {
+  width: 70px;
+  height: 70px;
+  background-image: url("../img/blackCircle.png");
+  background-repeat: no-repeat;
+  background-size: 70px;
+}
+
+#middle #right .level .checkedCircle {
+  display: inline-block;
+  width: 70px;
+  height: 70px;
+  background-image: url("../img/checkedCircle.png");
+  background-repeat: no-repeat;
+  background-size: 70px;
+  background-position: bottom;
+}
+
+#middle #right .level .checkedCircleCommon {
+  display: inline-block;
+  width: 350px;
+  height: 70px;
+  background-size: cover;
+}
+
+#middle #right .level .checkedCircle0 {
+  display: inline-block;
+  width: 350px;
+  height: 70px;
+  background-size: cover;
+  background-image: url("../img/checkedCircle0.png");
+}
+
+#middle #right .level .checkedCircle1 {
+  display: inline-block;
+  width: 350px;
+  height: 70px;
+  background-size: cover;
+  background-image: url("../img/checkedCircle1.png");
+}
+
+#middle #right .level .checkedCircle2 {
+  display: inline-block;
+  width: 350px;
+  height: 70px;
+  background-size: cover;
+  background-image: url("../img/checkedCircle2.png");
+}
+
+#middle #right .level .checkedCircle3 {
+  display: inline-block;
+  width: 350px;
+  height: 70px;
+  background-size: cover;
+  background-image: url("../img/checkedCircle3.png");
+}
+
+#middle #right .level .checkedCircle4 {
+  display: inline-block;
+  width: 350px;
+  height: 70px;
+  background-size: cover;
+  background-image: url("../img/checkedCircle4.png");
+}
+
+#middle #right .level .checkedCircle5 {
+  display: inline-block;
+  width: 350px;
+  height: 70px;
+  background-size: cover;
+  background-image: url("../img/checkedCircle5.png");
+}
+
+.mb70 {
+  margin-bottom: 30px;
+}
+
+#bottom {
+  width: 100%;
+  height: 320px;
+  text-align: center;
+}
+
+#bottom button {
+  margin-top: 85px;
+  width: 865px;
+  height: 130px;
+}
+
+#contents #top {
+  width: 100%;
+}
+
+button {
+  background-color: #353439;
+  color: #f1f5fe;
+  font-size: 53px;
+  font-family: "NanumBarunGothicBold";
+  border-radius: 65px;
+}

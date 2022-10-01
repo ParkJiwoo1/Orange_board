@@ -1,0 +1,151 @@
+#wrap {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #0b0b0b;
+    background-image: url('../img/bgBlack.png');
+    background-size: cover;
+    border-radius: 70px;
+}
+
+#title {
+    width: 100%;
+    height: 408px;
+    color: #fff;
+}
+
+#title img {
+    width: 55px;
+    height: 55px;
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+#title h1 {
+    font-family: "NanumBarunGothicBold";
+    margin-top: 50px;
+    margin-left: 100px;
+    font-size: 60px;
+    font-weight: bolder;
+}
+
+#title h3 {
+    font-family: "NanumBarunGothicBold";
+    margin-top: 20px;
+    margin-left: 100px;
+    font-size: 40px;
+    font-weight: bolder;
+}
+
+#contents {
+    flex: 1;
+    width: 100%;
+    background-color: #f6f6f6;
+    background-image: url('../img/bgWhiteB.png');
+    background-size: cover;
+    border-radius: 70px;
+}
+
+.wine {
+    float: left;
+    width: 200px;
+    height: 642px;
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: 0px 1px 5px 0px #d9d9d9;
+    background-repeat: no-repeat;
+    background-position: center 20%;
+    background-size: 135px;
+    margin-right: 20px;
+    position: relative;
+}
+
+.wine:hover {
+    box-shadow: 0px 1px 5px 0px #959595;
+}
+
+#wine1, #wine2, #wine3, #wine4 {
+    margin-top: 75px;
+}
+
+#wine5, #wine6, #wine7, #wine8 {
+    margin-top: 60px;
+}
+
+#wine1, #wine5 {
+    margin-left: 108px;
+}
+
+#wine1 {
+    background-image: url('../img/wine1.png');
+}
+
+#wine2 {
+    background-image: url('../img/wine2.png');
+}
+
+#wine3 {
+    background-image: url('../img/wine3.png');
+}
+
+#wine4 {
+    background-image: url('../img/wine4.png');
+}
+
+#wine5 {
+    background-image: url('../img/wine1.png');
+}
+
+#wine6 {
+    background-image: url('../img/wine2.png');
+}
+
+#wine7 {
+    background-image: url('../img/wine3.png');
+}
+
+#wine8 {
+    background-image: url('../img/wine4.png');
+}
+
+.wine .name {
+    margin-top: 515px;
+    color: #363636;
+    text-align: center;
+    font-family: 'NanumBarunGothicBold';
+    font-weight: bolder;
+    font-size: 28px;
+    width: 190px;
+    word-break: break-word;
+    max-height: 127px;
+    overflow: hidden;
+}
+
+.wine button {
+    position: absolute;
+    top: 614px;
+    left: 72px;
+    z-index: 999;
+    text-align: center;
+    font-family: 'NanumBarunGothicBold';
+    border: none;
+    font-size: 25px;
+    background-color: #666;
+    color: #fff;
+    line-height: 56px;
+    border-radius: 56px;
+    height: 56px;
+    width: 56px;
+    font-weight: bolder;
+    box-shadow: 0px 1px 5px 0px #d9d9d9;
+}
+
+.wine:hover button {
+    background-color: #18181a;
+}
+
+.wine:active button {
+    background-color: #18181a;
+}

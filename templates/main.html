@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orange Aging Table</title>
+    <link href="{{ url_for('static', filename='css/reset.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/index.css') }}" rel="stylesheet">
+  
+
+    
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript">
+     var t =0;
+       setInterval(function()
+       {
+               
+                $.ajax({
+                    type:"POST",
+                    url:"/data",
+
+                }).done(function(data){
+                var now_data_name=data['now_data_name'];
+                var now_data_time=data['now_data_time'];
+                var now_data_des=data['now_data_des'];
+                var is_start=data['is_start'];
+          
+
+                document.getElementById("image1_name").innerHTML = String(now_data_name);
+                document.getElementById("image1_explain").innerHTML =String(now_data_des)+"<br>";
+                if(is_start==1){
+                    t++;
+                     document.getElementById("image1_explain").innerHTML =document.getElementById("image1_explain").innerHTML+String(now_data_time-t)+"초남았습니다.";
+                if(t>=now_data_time){
+                 
+                    $.ajax({
+                    type:"POST",
+                    url:"/buzzer_on",
+
+                    }).done(function(data){
+                            //타이머리셋
+                            if (confirm('타이머가 종료되었습니다. ')) {
+                               
+                            } else {
+                              // Do nothing!
+                            }
+                               
+                    })
+                    location.href="http://127.0.0.1:5000/main.html";
+                  
+                }
+                }
+                })
+   
+            },1000 );
+
+    </script>
+    <script type="text/javascript">
+         $.ajax({
+                                    type:"POST",
+                                    url:"/buzzer_off",
+
+                                    }).done(function(data){
+                                            //타이머리셋
+
+
+                                             //('타이머를 종료합니다.');
+        })
+    </script>
+
+    <script type="text/javascript">
+        function move(num) {
+             var audio = new Audio('/static/effect.mp3');
+             audio.onended = function() { 
+             if(num==0){
+                $.ajax({
+                    type:"POST",
+                    url:"/start",
+
+                }).done(function(data){
+              
+                })
+            
+             }
+         }
+            audio.play();
+          
+        }
+    </script>
+
+</head>
+
+<body>
+    <audio autoplay="autoplay">
+     <source src="./effect.mp3" />     
+ </audio>
+    <div id="wrap">
+        <div id="title">
+           
+            <h1>해동시간 타이머</h1>
+            <h3>TEST NAME</h3>
+                <button onclick="move(0)">타이머 시작하기</button>
+
+        </div>
+        <div id="contents">
+            <div id="image1" class="wine">
+                <div class="name" id="image1_name">제품이름입니다.</div>
+                <div class="details" id="image1_explain">제품설명입니다.</div>
+              
+            </div>
+           
+         
+        </div>
+    </div>
+</body>
+
+</html>
