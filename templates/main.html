@@ -16,7 +16,7 @@
      var t =0;
        setInterval(function()
        {
-               
+               console.log('getting')
                 $.ajax({
                     type:"POST",
                     url:"/data",
@@ -26,7 +26,7 @@
                 var now_data_time=data['now_data_time'];
                 var now_data_des=data['now_data_des'];
                 var is_start=data['is_start'];
-          
+                    console.log(data)
 
                 document.getElementById("image1_name").innerHTML = String(now_data_name);
                 document.getElementById("image1_explain").innerHTML =String(now_data_des)+"<br>";
@@ -100,7 +100,7 @@
         <div id="title">
            
             <h1>해동시간 타이머</h1>
-            <h3>TEST NAME</h3>
+            <h3>{{data}}</h3>
                 <button onclick="move(0)">타이머 시작하기</button>
 
         </div>

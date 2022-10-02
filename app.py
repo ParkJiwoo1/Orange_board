@@ -48,15 +48,19 @@ try:
 except Exception as e:
     print(e)
     
-
+test = requests.get('https://fathomless-escarpment-81231.herokuapp.com/api')
+test_content = json.loads(test.content)
 def get_arduino():
     global serialcom,data_name,data_time,data_des
     global now_data_name,now_data_time,now_data_des
     while True:
-         read_msg=serialcom.readline()
-         read_msg=read_msg.decode('utf-8')
-         read_msg=read_msg[:-2]
+         read_msg=serialcom.readline().decode("utf-8").strip()
+         #read_msg=read_msg.decode('utf-8',errors='strict')
+         #read_msg=read_msg[:-2]
          #print(read_msg)
+         if(read_msg==test_content[0]['id']):
+         #print(read_msg)
+           print('found it')
          if read_msg in data_name:
              print('find index')
              print(data_name.index(read_msg))
@@ -110,8 +114,7 @@ def hello():
     req = requests.get('http://dnd5eapi.co/api/conditions/blinded')
     data=req.content
     print(req.content)
-    
-    return render_template("main.html")
+    return render_template("main.html",data=data)
 
 
 if __name__ == '__main__':
