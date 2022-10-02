@@ -58,9 +58,9 @@ def get_arduino():
          #read_msg=read_msg.decode('utf-8',errors='strict')
          #read_msg=read_msg[:-2]
          #print(read_msg)
-         if(read_msg==test_content[0]['id']):
+         #if(read_msg==test_content[0]['id']):
          #print(read_msg)
-           print('found it')
+           #print('found it')
          if read_msg in data_name:
              print('find index')
              print(data_name.index(read_msg))
@@ -110,12 +110,15 @@ def reset2_data():
     datas={}
     return datas
 @app.route('/',methods=["GET"])
-def hello():
+def main():
     req = requests.get('http://dnd5eapi.co/api/conditions/blinded')
     data=req.content
     print(req.content)
     return render_template("main.html",data=data)
+@app.route('/main.html')
+def gohome():
 
+     return render_template("main.html")
 
 if __name__ == '__main__':
     app.run(debug=True)
