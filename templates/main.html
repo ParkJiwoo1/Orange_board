@@ -16,24 +16,27 @@
      var t =0;
        setInterval(function()
        {
-               console.log('getting')
                 $.ajax({
                     type:"POST",
                     url:"/data",
 
                 }).done(function(data){
-                var now_data_name=data['now_data_name'];
-                var now_data_time=data['now_data_time'];
-                var now_data_des=data['now_data_des'];
-                var is_start=data['is_start'];
                     console.log(data)
-
-                document.getElementById("image1_name").innerHTML = String(now_data_name);
-                document.getElementById("image1_explain").innerHTML =String(now_data_des)+"<br>";
-                if(is_start==1){
+                var now_test_name=data['now_test_name']
+                var now_test_time=data['now_test_time']
+                var now_test_img=data['now_test_img']
+                var isStart=data['isStart']
+                    
+                if(now_test_name.length>0){
+                document.getElementById("image1_name").innerHTML = String('제품번호 : '+now_test_name);
+                document.getElementById("image1_explain").innerHTML =String('제품 정보 : '+now_test_img)+"<br>";
+                document.getElementById('imgtest').src=now_test_img;
+                document.getElementById("time_test").innerHTML =String('해동 시간 : '+now_test_time+'초')+"<br>";
+                }
+                if(isStart==1){
                     t++;
-                     document.getElementById("image1_explain").innerHTML =document.getElementById("image1_explain").innerHTML+String(now_data_time-t)+"초남았습니다.";
-                if(t>=now_data_time){
+                     document.getElementById("time_test").innerHTML =document.getElementById("time_test").innerHTML+String(now_test_time-t)+"초남았습니다.";
+                if(t>=now_test_time){
                  
                     $.ajax({
                     type:"POST",
@@ -100,15 +103,15 @@
         <div id="title">
            
             <h1>해동시간 타이머</h1>
-            <h3>{{data}}</h3>
                 <button onclick="move(0)">타이머 시작하기</button>
 
         </div>
         <div id="contents">
-            <div id="image1" class="wine">
-                <div class="name" id="image1_name">제품이름입니다.</div>
+            <div class="wine">
+                <img id='imgtest' class='image' src='https://5.imimg.com/data5/ANDROID/Default/2021/6/WT/JW/CJ/38359221/product-jpeg-500x500.jpg' alt='img' height='350px' width='300px'/>
+                <div class="name" id="image1_name">제품번호 : </div>
                 <div class="details" id="image1_explain">제품설명입니다.</div>
-              
+                <div class="time" id="time_test">time:</div>
             </div>
            
          
