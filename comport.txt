@@ -1,2 +1,2 @@
-3
+/dev/tty.usbserial-A10LGRB6
 #
