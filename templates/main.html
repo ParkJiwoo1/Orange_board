@@ -16,6 +16,7 @@
 
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script type="text/javascript">
+<<<<<<< HEAD
       var t = 0;
       var toggle = false;
       function starting() {
@@ -54,6 +55,48 @@
                 if (confirm("타이머가 종료되었습니다. ")) {
                 } else {
                   // Do nothing!
+=======
+     var t =0;
+       setInterval(function()
+       {
+                $.ajax({
+                    type:"POST",
+                    url:"/data",
+
+                }).done(function(data){
+                    console.log(data)
+                var now_test_name=data['now_test_name']
+                var now_test_time=data['now_test_time']
+                var now_test_img=data['now_test_img']
+                var isStart=data['isStart']
+                    
+                if(now_test_name.length>0){
+                document.getElementById("image1_name").innerHTML = String('제품번호 : '+now_test_name);
+                document.getElementById("image1_explain").innerHTML =String('제품 정보 : '+now_test_img)+"<br>";
+                document.getElementById('imgtest').src=now_test_img;
+                document.getElementById("time_test").innerHTML =String('해동 시간 : '+now_test_time+'초')+"<br>";
+                }
+                if(isStart==1){
+                    t++;
+                     document.getElementById("time_test").innerHTML =document.getElementById("time_test").innerHTML+String(now_test_time-t)+"초남았습니다.";
+                if(t>=now_test_time){
+                 
+                    $.ajax({
+                    type:"POST",
+                    url:"/buzzer_on",
+
+                    }).done(function(data){
+                            //타이머리셋
+                            if (confirm('타이머가 종료되었습니다. ')) {
+                               
+                            } else {
+                              // Do nothing!
+                            }
+                               
+                    })
+                    location.href="http://127.0.0.1:5000/main.html";
+                  
+>>>>>>> 02a5dbcc38091c7cc482b0d4af8301c2a2fce8f5
                 }
               });
               location.href = "http://127.0.0.1:5000/main.html";
@@ -109,6 +152,7 @@
       <source src="./effect.mp3" />
     </audio>
     <div id="wrap">
+<<<<<<< HEAD
       <div id="title">
         <h1>해동시간 타이머</h1>
         <button onclick="move(0)">타이머 시작하기</button>
@@ -127,11 +171,30 @@
             width="300px"
           />
           <div class="name" id="image1_name">제품번호 :</div>
+=======
+        <div id="title">
+           
+            <h1>해동시간 타이머</h1>
+                <button onclick="move(0)">타이머 시작하기</button>
+>>>>>>> 02a5dbcc38091c7cc482b0d4af8301c2a2fce8f5
 
           <div class="details" id="image1_explain">제품설명입니다.</div>
           <div class="time" id="time_test">time:</div>
         </div>
+<<<<<<< HEAD
       </div>
+=======
+        <div id="contents">
+            <div class="wine">
+                <img id='imgtest' class='image' src='https://5.imimg.com/data5/ANDROID/Default/2021/6/WT/JW/CJ/38359221/product-jpeg-500x500.jpg' alt='img' height='350px' width='300px'/>
+                <div class="name" id="image1_name">제품번호 : </div>
+                <div class="details" id="image1_explain">제품설명입니다.</div>
+                <div class="time" id="time_test">time:</div>
+            </div>
+           
+         
+        </div>
+>>>>>>> 02a5dbcc38091c7cc482b0d4af8301c2a2fce8f5
     </div>
   </body>
 </html>

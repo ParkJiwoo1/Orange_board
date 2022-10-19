@@ -1,9 +1,16 @@
+
+import datetime
 from flask import Flask, render_template
+from datetime import datetime
 import threading
 import serial
 import time
 import json
 import requests
+<<<<<<< HEAD
+=======
+
+>>>>>>> 02a5dbcc38091c7cc482b0d4af8301c2a2fce8f5
 """from openpyxl import load_workbook
 load_wb = load_workbook("data.xlsx", data_only=True)
 # 시트 이름으로 불러오기 
@@ -47,6 +54,7 @@ try:
     print(warning_msg)
 except Exception as e:
     print(e)
+<<<<<<< HEAD
 
 test = requests.get('https://fathomless-escarpment-81231.herokuapp.com/api')
 test_content = json.loads(test.content)
@@ -63,11 +71,30 @@ for row in test_content:
     test_name.append(str(row['id'])[:-1])
     m, s = map(int, row['time'].split(':'))
     currtime = m*60+s
+=======
+    
+test = requests.get('https://fathomless-escarpment-81231.herokuapp.com/api')
+test_content = json.loads(test.content)
+test_name=[]
+test_time=[]
+test_img=[]
+currtime=0
+now_test_name=''
+now_test_time=0
+now_test_img=''
+isStart=0
+for row in test_content:
+    #print(row)
+    test_name.append(str(row['id'])[:-1])
+    m,s = map(int,row['time'].split(':'))
+    currtime=m*60+s
+>>>>>>> 02a5dbcc38091c7cc482b0d4af8301c2a2fce8f5
     test_time.append(currtime)
     test_img.append(row['image'])
 print(test_name)
 print(test_time)
 print(test_img)
+<<<<<<< HEAD
 
 
 def get_arduino():
@@ -89,6 +116,26 @@ def get_arduino():
 
 
 threading.Thread(target=get_arduino, daemon=True).start()
+=======
+def get_arduino():
+    global serialcom,test_name,test_time,test_img
+    global now_test_time,now_test_name,now_test_img
+    while True:
+         read_msg=serialcom.readline().decode("utf-8").strip()
+         #read_msg=serialcom.readline().decode("utf-8")[:-2]
+         
+         if read_msg in test_name:
+            print('found finally')
+            print(read_msg)
+            print(test_name.index(read_msg))
+            now_test_name=test_name[test_name.index(read_msg)]
+            print(now_test_name)
+            now_test_time=test_time[test_name.index(read_msg)]
+            print(type(now_test_time))
+            now_test_img=test_img[test_name.index(read_msg)]
+        
+threading.Thread(target=get_arduino,daemon=True).start()
+>>>>>>> 02a5dbcc38091c7cc482b0d4af8301c2a2fce8f5
 
 app = Flask(__name__)
 
@@ -104,6 +151,7 @@ def get_api():
 @app.route('/data', methods=['GET', 'POST'])
 def read_data():
     global isStart
+<<<<<<< HEAD
     tests = {}
     num = 1
     tests['now_test_name'] = now_test_name
@@ -113,47 +161,83 @@ def read_data():
 
     return tests
 
+=======
+    tests={}
+    num=1
+    tests['now_test_name']=now_test_name
+    tests['now_test_time']=now_test_time
+    tests['now_test_img']=now_test_img
+    tests['isStart']=isStart
+    
+    return tests
+>>>>>>> 02a5dbcc38091c7cc482b0d4af8301c2a2fce8f5
 
 @app.route('/start', methods=['GET', 'POST'])
 def set_data():
     global isStart
+<<<<<<< HEAD
     isStart = 1
     tests = {}
     return tests
 
 
+=======
+    isStart=1
+    tests={}
+    return tests
+>>>>>>> 02a5dbcc38091c7cc482b0d4af8301c2a2fce8f5
 @app.route('/buzzer_on', methods=['GET', 'POST'])
 def reset_data():
     global serialcom
     global isStart
     serialcom.write("on".encode())
+<<<<<<< HEAD
     isStart = 0
     tests = {}
     return tests
 
 
+=======
+    isStart=0
+    tests={}
+    return tests
+>>>>>>> 02a5dbcc38091c7cc482b0d4af8301c2a2fce8f5
 @app.route('/buzzer_off', methods=['GET', 'POST'])
 def reset2_data():
     global serialcom
     global isStart
     serialcom.write("off".encode())
+<<<<<<< HEAD
     isStart = 0
     tests = {}
     return tests
 
 
 @app.route('/', methods=["GET"])
+=======
+    isStart=0
+    tests={}
+    return tests
+@app.route('/',methods=["GET"])
+>>>>>>> 02a5dbcc38091c7cc482b0d4af8301c2a2fce8f5
 def main():
     req = requests.get('http://dnd5eapi.co/api/conditions/blinded')
     data = req.content
     print(req.content)
+<<<<<<< HEAD
     return render_template("main.html", data=data)
 
 
 @app.route('/main.html')
 def gohome():
     return render_template("main.html")
+=======
+    return render_template("main.html",data=data)
+@app.route('/main.html')
+def gohome():
+>>>>>>> 02a5dbcc38091c7cc482b0d4af8301c2a2fce8f5
 
+     return render_template("main.html")
 
 if __name__ == '__main__':
     app.run(debug=True)
