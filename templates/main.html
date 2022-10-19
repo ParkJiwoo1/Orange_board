@@ -1,119 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Orange Aging Table</title>
-    <link href="{{ url_for('static', filename='css/reset.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/index.css') }}" rel="stylesheet">
-  
+    <link
+      href="{{ url_for('static', filename='css/reset.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      href="{{ url_for('static', filename='css/index.css') }}"
+      rel="stylesheet"
+    />
 
-    
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script type="text/javascript">
-     var t =0;
-       setInterval(function()
-       {
-               
-                $.ajax({
-                    type:"POST",
-                    url:"/data",
+      var t = 0;
+      var toggle = false;
+      function starting() {
+        $.ajax({
+          type: "POST",
+          url: "/data",
+        }).done(function (data) {
+          console.log(data);
+          var now_test_name = data["now_test_name"];
+          var now_test_time = data["now_test_time"];
+          var now_test_img = data["now_test_img"];
+          var isStart = data["isStart"];
 
-                }).done(function(data){
-                var now_data_name=data['now_data_name'];
-                var now_data_time=data['now_data_time'];
-                var now_data_des=data['now_data_des'];
-                var is_start=data['is_start'];
-          
-
-                document.getElementById("image1_name").innerHTML = String(now_data_name);
-                document.getElementById("image1_explain").innerHTML =String(now_data_des)+"<br>";
-                if(is_start==1){
-                    t++;
-                     document.getElementById("image1_explain").innerHTML =document.getElementById("image1_explain").innerHTML+String(now_data_time-t)+"초남았습니다.";
-                if(t>=now_data_time){
-                 
-                    $.ajax({
-                    type:"POST",
-                    url:"/buzzer_on",
-
-                    }).done(function(data){
-                            //타이머리셋
-                            if (confirm('타이머가 종료되었습니다. ')) {
-                               
-                            } else {
-                              // Do nothing!
-                            }
-                               
-                    })
-                    location.href="http://127.0.0.1:5000/main.html";
-                  
+          if (now_test_name.length > 0) {
+            document.getElementById("image1_name").innerHTML = String(
+              "제품번호 : " + now_test_name
+            );
+            document.getElementById("image1_explain").innerHTML =
+              String("제품 정보 : " + now_test_img) + "<br>";
+            document.getElementById("imgtest").src = now_test_img;
+            document.getElementById("time_test").innerHTML =
+              String("해동 시간 : " + now_test_time + "초") + "<br>";
+          }
+          if (isStart == 1 && toggle === false) {
+            t++;
+            document.getElementById("time_test").innerHTML =
+              document.getElementById("time_test").innerHTML +
+              String(now_test_time - t) +
+              "초남았습니다.";
+            if (t >= now_test_time) {
+              $.ajax({
+                type: "POST",
+                url: "/buzzer_on",
+              }).done(function (data) {
+                //타이머리셋
+                if (confirm("타이머가 종료되었습니다. ")) {
+                } else {
+                  // Do nothing!
                 }
-                }
-                })
-   
-            },1000 );
-
+              });
+              location.href = "http://127.0.0.1:5000/main.html";
+            }
+          }
+        });
+      }
+      setInterval(starting, 1000);
     </script>
     <script type="text/javascript">
-         $.ajax({
-                                    type:"POST",
-                                    url:"/buzzer_off",
-
-                                    }).done(function(data){
-                                            //타이머리셋
-
-
-                                             //('타이머를 종료합니다.');
-        })
+      function stop() {
+        toggle = true;
+      }
+    </script>
+    <script type="text/javascript">
+      function restart() {
+        toggle = false;
+      }
+    </script>
+    <script type="text/javascript">
+      function reset() {
+        t = 0;
+      }
+    </script>
+    <script type="text/javascript">
+      $.ajax({
+        type: "POST",
+        url: "/buzzer_off",
+      }).done(function (data) {
+        //타이머리셋
+        //('타이머를 종료합니다.');
+      });
     </script>
 
     <script type="text/javascript">
-        function move(num) {
-             var audio = new Audio('/static/effect.mp3');
-             audio.onended = function() { 
-             if(num==0){
-                $.ajax({
-                    type:"POST",
-                    url:"/start",
-
-                }).done(function(data){
-              
-                })
-            
-             }
-         }
-            audio.play();
-          
-        }
+      function move(num) {
+        var audio = new Audio("/static/effect.mp3");
+        audio.onended = function () {
+          if (num == 0) {
+            $.ajax({
+              type: "POST",
+              url: "/start",
+            }).done(function (data) {});
+          }
+        };
+        audio.play();
+      }
     </script>
+  </head>
 
-</head>
-
-<body>
+  <body>
     <audio autoplay="autoplay">
-     <source src="./effect.mp3" />     
- </audio>
+      <source src="./effect.mp3" />
+    </audio>
     <div id="wrap">
-        <div id="title">
-           
-            <h1>해동시간 타이머</h1>
-            <h3>TEST NAME</h3>
-                <button onclick="move(0)">타이머 시작하기</button>
+      <div id="title">
+        <h1>해동시간 타이머</h1>
+        <button onclick="move(0)">타이머 시작하기</button>
+      </div>
+      <div id="contents">
+        <button onclick="stop()">일시정지</button>
+        <button onclick="restart()">재개</button>
+        <button onclick="reset()">리셋</button>
+        <div class="wine">
+          <img
+            id="imgtest"
+            class="image"
+            src="https://5.imimg.com/data5/ANDROID/Default/2021/6/WT/JW/CJ/38359221/product-jpeg-500x500.jpg"
+            alt="img"
+            height="350px"
+            width="300px"
+          />
+          <div class="name" id="image1_name">제품번호 :</div>
 
+          <div class="details" id="image1_explain">제품설명입니다.</div>
+          <div class="time" id="time_test">time:</div>
         </div>
-        <div id="contents">
-            <div id="image1" class="wine">
-                <div class="name" id="image1_name">제품이름입니다.</div>
-                <div class="details" id="image1_explain">제품설명입니다.</div>
-              
-            </div>
-           
-         
-        </div>
+      </div>
     </div>
-</body>
-
+  </body>
 </html>
