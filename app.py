@@ -1,20 +1,28 @@
-import datetime
 from flask import Flask, render_template
-from datetime import datetime
 import threading
 import serial
 import time
 import json
 import requests
-from openpyxl import load_workbook
+"""from openpyxl import load_workbook
 load_wb = load_workbook("data.xlsx", data_only=True)
-# 시트 이름으로 불러오기
-load_ws = load_wb['Sheet1']
+# 시트 이름으로 불러오기 
+load_ws = load_wb['Sheet1']"""
 
 """data_name=[]
 data_time=[]
 data_des=[]
 for row in load_ws.rows:
+
+    
+        
+          
+    
+
+        
+    
+    @@ -22,98 +22,138 @@
+  
     data_name.append(str(row[0].value[1:]))
     data_time.append(row[1].value)
     data_des.append(row[2].value)
@@ -50,8 +58,7 @@ try:
 except Exception as e:
     print(e)
 
-    test = requests.get(
-        'https://fathomless-escarpment-81231.herokuapp.com/api')
+test = requests.get('https://fathomless-escarpment-81231.herokuapp.com/api')
 test_content = json.loads(test.content)
 test_name = []
 test_time = []
@@ -74,13 +81,13 @@ print(test_img)
 
 
 def get_arduino():
-    global serialcom, data_name, data_time, data_des
-    global now_data_name, now_data_time, now_data_des
+    global serialcom, test_name, test_time, test_img
+    global now_test_time, now_test_name, now_test_img
     while True:
         read_msg = serialcom.readline().decode("utf-8").strip()
         # read_msg=serialcom.readline().decode("utf-8")[:-2]
-        # print(read_msg)
-        if read_msg in data_name:
+
+        if read_msg in test_name:
             print('found finally')
             print(read_msg)
             print(test_name.index(read_msg))
@@ -106,7 +113,7 @@ def get_api():
 
 @app.route('/data', methods=['GET', 'POST'])
 def read_data():
-    global is_start
+    global isStart
     tests = {}
     num = 1
     tests['now_test_name'] = now_test_name
@@ -119,7 +126,7 @@ def read_data():
 
 @app.route('/start', methods=['GET', 'POST'])
 def set_data():
-    global is_start
+    global isStart
     isStart = 1
     tests = {}
     return tests
@@ -127,7 +134,8 @@ def set_data():
 
 @app.route('/buzzer_on', methods=['GET', 'POST'])
 def reset_data():
-    global is_start, serialcom
+    global serialcom
+    global isStart
     serialcom.write("on".encode())
     isStart = 0
     tests = {}
@@ -136,20 +144,20 @@ def reset_data():
 
 @app.route('/buzzer_off', methods=['GET', 'POST'])
 def reset2_data():
-    global is_start, serialcom
+    global serialcom
+    global isStart
     serialcom.write("off".encode())
-    is_start = 0
-    datas = {}
-    return datas
+    isStart = 0
+    tests = {}
+    return tests
 
 
 @app.route('/', methods=["GET"])
-def hello():
+def main():
     req = requests.get('http://dnd5eapi.co/api/conditions/blinded')
     data = req.content
     print(req.content)
-
-    return render_template("main.html")
+    return render_template("main.html", data=data)
 
 
 @app.route('/main.html')
