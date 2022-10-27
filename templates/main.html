@@ -18,14 +18,12 @@
     <script type="text/javascript">
       var t = 0;
       var toggle = false;
-      var open = false;
       function starting() {
         $.ajax({
           type: "POST",
           url: "/data",
         }).done(function (data) {
           console.log(data);
-          open = true;
           var now_test_name = data["now_test_name"];
           var now_test_time = data["now_test_time"];
           var now_test_img = data["now_test_img"];
@@ -54,7 +52,6 @@
               }).done(function (data) {
                 //타이머리셋
                 if (confirm("타이머가 종료되었습니다. ")) {
-                  open = false;
                 } else {
                   // Do nothing!
                 }
@@ -121,11 +118,11 @@
             id="imgtest"
             class="image"
             src=""
-            alt="img"
+            alt="바코드를 대주세요"
             height="350px"
             width="300px"
           />
-          <div class="name" id="image1_name">바코드를 대주세요</div>
+          <div class="name" id="image1_name"></div>
 
           <div class="details" id="image1_explain"></div>
           <div class="time" id="time_test"></div>

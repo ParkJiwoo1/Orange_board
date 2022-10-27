@@ -1,5 +1,6 @@
 {
     "port": "/dev/tty.usbserial-A10LGRB6",
-    "board": "arduino:avr:uno",
-    "sketch": "bar_code.ino"
+    "board": "arduino:avr:mega",
+    "sketch": "bar_code.ino",
+    "configuration": "cpu=atmega2560"
 }
