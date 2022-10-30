@@ -54,6 +54,11 @@
                 if (confirm("타이머가 종료되었습니다. ")) {
                 } else {
                   // Do nothing!
+                  /*
+                  <button onclick="stop()">일시정지</button>
+        <button onclick="restart()">재개</button>
+        <button onclick="reset()">리셋</button>
+                  */
                 }
               });
               location.href = "http://127.0.0.1:5000/main.html";
@@ -110,22 +115,18 @@
         <button onclick="move(0)">타이머 시작하기</button>
       </div>
       <div id="contents">
-        <button onclick="stop()">일시정지</button>
-        <button onclick="restart()">재개</button>
-        <button onclick="reset()">리셋</button>
         <div class="wine">
           <img
             id="imgtest"
             class="image"
-            src=""
+            src="https://raw.githubusercontent.com/ParkJiwoo1/Orange_api/master/routes/EMC.png?token=GHSAT0AAAAAABYI2SS3IN5H5YD2QECPO4RMY23SSHQ"
             alt="바코드를 대주세요"
             height="350px"
             width="300px"
           />
-          <div class="name" id="image1_name"></div>
-
-          <div class="details" id="image1_explain"></div>
-          <div class="time" id="time_test"></div>
+          <div class="name" id="image1_name">제품명 : QXE76-6</div>
+          <div class="details" id="image1_explain">제품 종류 : EMC</div>
+          <div class="time" id="time_test">타이머 : 10:00</div>
         </div>
       </div>
     </div>

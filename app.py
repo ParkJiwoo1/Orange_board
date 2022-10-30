@@ -4,6 +4,7 @@ import serial
 import time
 import json
 import requests
+from flask_ngrok import run_with_ngrok
 """from openpyxl import load_workbook
 load_wb = load_workbook("data.xlsx", data_only=True)
 # 시트 이름으로 불러오기 
@@ -14,15 +15,6 @@ data_time=[]
 data_des=[]
 for row in load_ws.rows:
 
-    
-        
-          
-    
-
-        
-    
-    @@ -22,98 +22,138 @@
-  
     data_name.append(str(row[0].value[1:]))
     data_time.append(row[1].value)
     data_des.append(row[2].value)
@@ -68,7 +60,7 @@ now_test_name = ''
 now_test_time = 0
 now_test_img = ''
 isStart = 0
-for row in test_content:
+"""for row in test_content:
     # print(row)
     test_name.append(str(row['id'])[:-1])
     m, s = map(int, row['time'].split(':'))
@@ -77,7 +69,7 @@ for row in test_content:
     test_img.append(row['image'])
 print(test_name)
 print(test_time)
-print(test_img)
+print(test_img)"""
 
 
 def get_arduino():
@@ -101,14 +93,15 @@ def get_arduino():
 threading.Thread(target=get_arduino, daemon=True).start()
 
 app = Flask(__name__)
+run_with_ngrok(app)
 
 
-@app.route('/api',)
+"""@app.route('/api',)
 def get_api():
     req = requests.get('http://dnd5eapi.co/api/conditions/blinded')
     print(req.content)
     api_data = json.loads(req)
-    return render_template("main.html", api_data=api_data)
+    return render_template("main.html", api_data=api_data)"""
 
 
 @app.route('/data', methods=['GET', 'POST'])
@@ -166,4 +159,4 @@ def gohome():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000)
