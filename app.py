@@ -60,7 +60,7 @@ now_test_name = ''
 now_test_time = 0
 now_test_img = ''
 isStart = 0
-"""for row in test_content:
+for row in test_content:
     # print(row)
     test_name.append(str(row['id'])[:-1])
     m, s = map(int, row['time'].split(':'))
@@ -69,16 +69,18 @@ isStart = 0
     test_img.append(row['image'])
 print(test_name)
 print(test_time)
-print(test_img)"""
+print(test_img)
 
 
 def get_arduino():
     global serialcom, test_name, test_time, test_img
     global now_test_time, now_test_name, now_test_img
     while True:
-        read_msg = serialcom.readline().decode("utf-8").strip()
-        # read_msg=serialcom.readline().decode("utf-8")[:-2]
-
+        read_msg = serialcom.readline().decode("utf-8").strip()[:11]
+        #read_msg = serialcom.readline().decode("utf-8")[:-3]
+        # print(read_msg[:11])
+        # print(test_name)
+        #print(read_msg[:11] == test_name[0])
         if read_msg in test_name:
             print('found finally')
             print(read_msg)
@@ -108,7 +110,6 @@ def get_api():
 def read_data():
     global isStart
     tests = {}
-    num = 1
     tests['now_test_name'] = now_test_name
     tests['now_test_time'] = now_test_time
     tests['now_test_img'] = now_test_img

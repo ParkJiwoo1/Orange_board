@@ -20,7 +20,7 @@ void loop()
   {
     str = mySerial.readString();              // read()가 아닌 readString()으로 읽기 :: 문자열로 읽기
                                               //왜? 웬만한 교과서에는 read()로 한 문자만 읽어오는 것만 설명하는지 모르겠음
-    str = str.substring(0, str.length() - 2); //시리얼모니터에서 엔터 치면서 마지막에 송신한 '\n' 제거
+    str = str.substring(0, str.length() - 3); //시리얼모니터에서 엔터 치면서 마지막에 송신한 '\n' 제거
     Serial.println(str);                      // 수신 데이터 확인
     // Serial.print("--------( ");                // 구분선
     // Serial.print(str.length());              // 수신 받은 문자열 길이 확인

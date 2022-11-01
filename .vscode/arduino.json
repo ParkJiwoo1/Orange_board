@@ -1,5 +1,5 @@
 {
-    "port": "/dev/tty.usbserial-A10LGRB6",
+    "port": "/dev/tty.usbserial-A10LH0B7",
     "board": "arduino:avr:uno",
     "sketch": "bar_code.ino"
 }
