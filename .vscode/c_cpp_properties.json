@@ -15,9 +15,11 @@
                 "/Users/parkjiwoo/Library/Arduino15/packages/arduino/hardware/avr/1.8.5/cores/arduino",
                 "/Users/parkjiwoo/Library/Arduino15/packages/arduino/hardware/avr/1.8.5/variants/standard",
                 "/Users/parkjiwoo/Library/Arduino15/packages/arduino/hardware/avr/1.8.5/libraries/SoftwareSerial/src",
+                "/Users/parkjiwoo/Library/Arduino15/packages/arduino/hardware/avr/1.8.5/libraries/Arduino-LiquidCrystal-I2C-library-master",
+                "/Users/parkjiwoo/Library/Arduino15/packages/arduino/hardware/avr/1.8.5/libraries/Wire",
                 "/Users/parkjiwoo/Library/Arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/lib/gcc/avr/7.3.0/include",
                 "/Users/parkjiwoo/Library/Arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/lib/gcc/avr/7.3.0/include-fixed",
-                "/Users/parkjiwoo/Library/Arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include"
+                "/Users/parkjiwoo/Library/Arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include",
                 ],
             "forcedInclude": [
                 "/Users/parkjiwoo/Library/Arduino15/packages/arduino/hardware/avr/1.8.5/cores/arduino/Arduino.h"            ],

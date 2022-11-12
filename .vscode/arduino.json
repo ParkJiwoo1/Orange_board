@@ -1,5 +1,6 @@
 {
     "port": "/dev/tty.usbserial-A10LH0B7",
     "board": "arduino:avr:uno",
-    "sketch": "bar_code.ino"
+    "sketch": "bar_code/bar_code.ino",
+    "C_Cpp.intelliSenseEngine": "Tag Parser"
 }

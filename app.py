@@ -5,26 +5,6 @@ import time
 import json
 import requests
 from flask_ngrok import run_with_ngrok
-"""from openpyxl import load_workbook
-load_wb = load_workbook("data.xlsx", data_only=True)
-# 시트 이름으로 불러오기 
-load_ws = load_wb['Sheet1']"""
-
-"""data_name=[]
-data_time=[]
-data_des=[]
-for row in load_ws.rows:
-
-    data_name.append(str(row[0].value[1:]))
-    data_time.append(row[1].value)
-    data_des.append(row[2].value)
-print(data_name)
-print(data_time)
-print(data_des)
-now_data_name='' 
-now_data_time=0
-now_data_des=''    
-is_start=0   """
 
 try:
     ports = []
@@ -53,11 +33,17 @@ except Exception as e:
 test = requests.get('https://fathomless-escarpment-81231.herokuapp.com/api')
 test_content = json.loads(test.content)
 test_name = []
+test_model = []
 test_time = []
+test_min = []
+test_sec = []
 test_img = []
 currtime = 0
 now_test_name = ''
+now_test_model = ''
 now_test_time = 0
+now_test_min = 0
+now_test_sec = 0
 now_test_img = ''
 isStart = 0
 for row in test_content:
@@ -65,22 +51,25 @@ for row in test_content:
     test_name.append(str(row['id'])[:-1])
     m, s = map(int, row['time'].split(':'))
     currtime = m*60+s
+    test_model.append(str(row['model']))
     test_time.append(currtime)
+    test_min.append(m)
+    test_sec.append(s)
     test_img.append(row['image'])
 print(test_name)
+print(test_model)
 print(test_time)
 print(test_img)
 
 
 def get_arduino():
     global serialcom, test_name, test_time, test_img
-    global now_test_time, now_test_name, now_test_img
+    global now_test_time, now_test_model, now_test_name, now_test_img, now_test_min, now_test_sec
     while True:
-        read_msg = serialcom.readline().decode("utf-8").strip()[:11]
-        #read_msg = serialcom.readline().decode("utf-8")[:-3]
-        # print(read_msg[:11])
+        #read_msg = serialcom.readline().decode("utf-8").strip()[:11]
+        read_msg = serialcom.readline().decode("utf-8").strip()[:-1]
+        # print(read_msg)
         # print(test_name)
-        #print(read_msg[:11] == test_name[0])
         if read_msg in test_name:
             print('found finally')
             print(read_msg)
@@ -90,6 +79,13 @@ def get_arduino():
             now_test_time = test_time[test_name.index(read_msg)]
             print(type(now_test_time))
             now_test_img = test_img[test_name.index(read_msg)]
+            now_test_model = test_model[test_name.index(read_msg)]
+            print(now_test_model)
+            now_test_min = test_min[test_name.index(read_msg)]
+            now_test_sec = test_sec[test_name.index(read_msg)]
+            print(now_test_time)
+            print(now_test_min)
+            print(now_test_sec)
 
 
 threading.Thread(target=get_arduino, daemon=True).start()
@@ -113,6 +109,9 @@ def read_data():
     tests['now_test_name'] = now_test_name
     tests['now_test_time'] = now_test_time
     tests['now_test_img'] = now_test_img
+    tests['now_test_model'] = now_test_model
+    tests['now_test_min'] = now_test_min
+    tests['now_test_sec'] = now_test_sec
     tests['isStart'] = isStart
 
     return tests
@@ -141,6 +140,26 @@ def reset2_data():
     global serialcom
     global isStart
     serialcom.write("off".encode())
+    isStart = 0
+    tests = {}
+    return tests
+
+
+@app.route('/lcd', methods=['GET', 'POST'])
+def reset3_data():
+    global serialcom
+    global isStart
+    serialcom.write("lcd".encode())
+    isStart = 0
+    tests = {}
+    return tests
+
+
+@app.route('/lcd_off', methods=['GET', 'POST'])
+def reset4_data():
+    global serialcom
+    global isStart
+    serialcom.write("lcd_off".encode())
     isStart = 0
     tests = {}
     return tests

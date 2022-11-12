@@ -25,20 +25,26 @@
         }).done(function (data) {
           console.log(data);
           var now_test_name = data["now_test_name"];
+          var now_test_model = data["now_test_model"];
           var now_test_time = data["now_test_time"];
+          var now_test_min = data["now_test_min"];
+          var now_test_sec = data["now_test_sec"];
           var now_test_img = data["now_test_img"];
           var isStart = data["isStart"];
-
           if (now_test_name.length > 0) {
             document.getElementById("image1_name").innerHTML = String(
-              "제품번호 : " + now_test_name
+              "제품번호 : " + now_test_name,
             );
             document.getElementById("image1_explain").innerHTML =
-              String("제품 정보 : " + now_test_img) + "<br>";
+              String("제품 모델 : " + now_test_model) + "<br>";
             document.getElementById("imgtest").src = now_test_img;
             document.getElementById("time_test").innerHTML =
               String("해동 시간 : " + now_test_time + "초") + "<br>";
+            /*String(
+                "해동 시간 : " + now_test_min + ":" + now_test_sec + ,
+              ) + "<br>";*/
           }
+
           if (isStart == 1 && toggle === false) {
             t++;
             document.getElementById("time_test").innerHTML =
@@ -54,11 +60,6 @@
                 if (confirm("타이머가 종료되었습니다. ")) {
                 } else {
                   // Do nothing!
-                  /*
-                  <button onclick="stop()">일시정지</button>
-        <button onclick="restart()">재개</button>
-        <button onclick="reset()">리셋</button>
-                  */
                 }
               });
               location.href = "http://127.0.0.1:5000/main.html";
@@ -88,6 +89,7 @@
         //('타이머를 종료합니다.');
       });
     </script>
+    <script type="text/javascript"></script>
 
     <script type="text/javascript">
       function move(num) {
@@ -119,14 +121,14 @@
           <img
             id="imgtest"
             class="image"
-            src="https://raw.githubusercontent.com/ParkJiwoo1/Orange_api/master/routes/EMC.png?token=GHSAT0AAAAAABYI2SS3IN5H5YD2QECPO4RMY23SSHQ"
-            alt="바코드를 대주세요"
+            src="https://play-lh.googleusercontent.com/os72icmFlDtbxpYbZCP-v6kOereSLGDmlKsBl1ISTPdgbcpoc4rSIuXDuoDECvgcvoFJ"
+            alt=""
             height="350px"
             width="300px"
           />
-          <div class="name" id="image1_name">제품명 : QXE76-6</div>
-          <div class="details" id="image1_explain">제품 종류 : EMC</div>
-          <div class="time" id="time_test">타이머 : 10:00</div>
+          <div class="name" id="image1_name">상품을 바코드에 찍어주세요</div>
+          <div class="details" id="image1_explain"></div>
+          <div class="time" id="time_test"></div>
         </div>
       </div>
     </div>
