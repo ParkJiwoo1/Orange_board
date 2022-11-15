@@ -1,27 +1,19 @@
 
 
 #include <SoftwareSerial.h> // 시리얼 포트가 부족한 경우, 다른 기기와 시리얼 통신을 위한 아두이노 라이브러리
-#include <LiquidCrystal_I2C.h>
-#include <Wire.h>
 
 SoftwareSerial mySerial(2, 3); // RX, TX
 
 String str = ""; //시리얼수신 문자열 저장
 String msg = "";
-LiquidCrystal_I2C lcd(0x3F, 16, 2);
 int hour = 0, minute = 0, second = 0; // 시, 분, 초
 int day = 0;                          // day
-char ch = ":";
 
 void setup()
 {
   Serial.begin(9600);
   pinMode(4, OUTPUT);
   mySerial.begin(9600);
-  lcd.begin();
-  lcd.clear();
-  lcd.backlight();
-  lcd.print("Orange board!");
 }
 
 void loop()
@@ -43,10 +35,6 @@ void loop()
   if (Serial.available())
   {
     msg = Serial.readStringUntil('\n');
-    /*if (msg.indexOf("lcd") > -1)
-    {
-      lcd.print("Orange Timer!");
-    }*/
 
     if (msg.indexOf("on") > -1)
     {

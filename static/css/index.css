@@ -1,6 +1,4 @@
 #wrap {
-    width: 100%;
-    height: 100%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -9,8 +7,9 @@
     background-size: cover;
 }
 #title {
+    display: flex;
     width: 100%;
-    height: 308px;
+    height: 208px;
     color: #fff;
 }
 #title img {
@@ -39,14 +38,20 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+    /* justify-content: center; */
+     align-items: center; 
+    flex-direction: column;
     background-color: #0b0b0b;
     background-image: url('../img/bgBlack.png');
     background-size: cover;
 }
 #title {
-    width: 100%;
-    height: 408px;
+    width: 80%;
+    height: 308px;
     color: #fff;
+    display :flex;
+    justify-content:space-between;
+    align-items:center;
 }
 #title img {
     width: 55px;
@@ -69,8 +74,9 @@
     font-weight: bolder;
 }
 #contents {
-    flex: 1;
-    width: 100%;
+     flex: 1; 
+    width: 70%;
+    height : 100%;
     display:flex;
     align-items: flex-start;
     justify-content: center;
@@ -82,13 +88,13 @@
 }
 
 .wine {
-    margin-top : 50px;
+    margin-top : 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 70%;
-    height: 1052px;
+     width: 80%; 
+     height : 90%; 
     background-color: #fff;
     border-radius: 30px;
     box-shadow: 0px 1px 5px 0px #d9d9d9;
@@ -101,8 +107,7 @@
 .wine:hover {
     box-shadow: 0px 1px 5px 0px #959595;
 }
-#image1 {
-}
+
 .wine:hover {
     box-shadow: 0px 1px 5px 0px #959595;
 }
@@ -185,7 +190,7 @@
     background-image: url('../img/image8.png');
 }
 .wine .image{
-    width : 600px;
+    width : 400px;
     height : auto;
 
     /*background-image: url('https://5.imimg.com/data5/ANDROID/Default/2021/6/WT/JW/CJ/38359221/product-jpeg-500x500.jpg');*/
@@ -196,7 +201,7 @@
     margin-top: 30px;
     font-family: 'NanumBarunGothicBold';
     font-weight: bolder;
-    font-size: 50px;
+    font-size: 40px;
     font-weight: 500;
     width: 100%;
     justify-content: center;
@@ -228,15 +233,8 @@
 .wine button {
     font-family: 'NanumBarunGothicBold';
     font-size: 25px;
+    margin-top : 10px;
 
-    
-          
-            
-    
-
-          
-    
-    
   
     background-color: #fff;
     border: 2px solid #353535;
@@ -244,9 +242,7 @@
     height: 55px;
     width: 188px;
     font-weight: bolder;
-    position: absolute;
-    bottom: 56px;
-    left: 28px;
+    
 }
 .wine button:hover {
     background-color: #353535;
@@ -259,9 +255,7 @@
     color: #fff;
 }
 #title button {
-    position: absolute;
-    left: 540px;
-    top: 160px;
+    
     background-color: #353439;
     color: #f1f5fe;
     font-size: 53px;
@@ -269,6 +263,7 @@
     border-radius: 65px;
     height: 120px;
     width: 450px;
+    margin-top : 10px;
 
    /* background-color: #fff;
     border: 2px solid #353535;
@@ -291,14 +286,14 @@
     color: #fff;
 }
 #title button {
-    position: absolute;
-    left: 540px;
-    top: 160px;
+     /* position: absolute;  */
+     /* left: auto; */
+     /* top: 50px;  */
     background-color: #353439;
     color: #f1f5fe;
-    font-size: 53px;
+    font-size: 40px;
     font-family: "NanumBarunGothicBold";
     border-radius: 65px;
-    height: 120px;
-    width: 450px;
+    height: 90px;
+    width: 350px;
 }
