@@ -47,7 +47,6 @@ now_test_sec = 0
 now_test_img = ''
 isStart = 0
 for row in test_content:
-    # print(row)
     test_name.append(str(row['id'])[:-1])
     m, s = map(int, row['time'].split(':'))
     currtime = m*60+s
@@ -56,10 +55,6 @@ for row in test_content:
     test_min.append(m)
     test_sec.append(s)
     test_img.append(row['image'])
-print(test_name)
-print(test_model)
-print(test_time)
-print(test_img)
 
 
 def get_arduino():
@@ -68,8 +63,6 @@ def get_arduino():
     while True:
         #read_msg = serialcom.readline().decode("utf-8").strip()[:11]
         read_msg = serialcom.readline().decode("utf-8").strip()[:-1]
-        # print(read_msg)
-        # print(test_name)
         if read_msg in test_name:
             print('found finally')
             print(read_msg)
